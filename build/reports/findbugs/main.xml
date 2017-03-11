@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.1" sequence="0" timestamp="1488821386622" analysisTimestamp="1488821386643" release="">
+  <Project projectName="">
+    <Jar>/Users/keith/Documents/Courses/PiJ/PiJ-2016-17/coursework/cw-cm/build/classes/main/spec/Contact.class</Jar>
+    <Jar>/Users/keith/Documents/Courses/PiJ/PiJ-2016-17/coursework/cw-cm/build/classes/main/spec/ContactManager.class</Jar>
+    <Jar>/Users/keith/Documents/Courses/PiJ/PiJ-2016-17/coursework/cw-cm/build/classes/main/spec/FutureMeeting.class</Jar>
+    <Jar>/Users/keith/Documents/Courses/PiJ/PiJ-2016-17/coursework/cw-cm/build/classes/main/spec/Meeting.class</Jar>
+    <Jar>/Users/keith/Documents/Courses/PiJ/PiJ-2016-17/coursework/cw-cm/build/classes/main/spec/PastMeeting.class</Jar>
+    <AuxClasspathEntry>/Users/keith/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/annotations/3.0.1/fc019a2216218990d64dfe756e7aa20f0069dea2/annotations-3.0.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/Users/keith/.gradle/caches/modules-2/files-2.1/net.jcip/jcip-annotations/1.0/afba4942caaeaf46aab0b976afd57cc7c181467e/jcip-annotations-1.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/Users/keith/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.1/f7be08ec23c21485b9b5a1cf1654c2ec8c58168d/jsr305-3.0.1.jar</AuxClasspathEntry>
+    <SrcDir>/Users/keith/Documents/Courses/PiJ/PiJ-2016-17/coursework/cw-cm/src/main/java/spec/Contact.java</SrcDir>
+    <SrcDir>/Users/keith/Documents/Courses/PiJ/PiJ-2016-17/coursework/cw-cm/src/main/java/spec/ContactManager.java</SrcDir>
+    <SrcDir>/Users/keith/Documents/Courses/PiJ/PiJ-2016-17/coursework/cw-cm/src/main/java/spec/FutureMeeting.java</SrcDir>
+    <SrcDir>/Users/keith/Documents/Courses/PiJ/PiJ-2016-17/coursework/cw-cm/src/main/java/spec/Meeting.java</SrcDir>
+    <SrcDir>/Users/keith/Documents/Courses/PiJ/PiJ-2016-17/coursework/cw-cm/src/main/java/spec/PastMeeting.java</SrcDir>
+  </Project>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Mon, 6 Mar 2017 17:29:46 +0000" total_classes="5" referenced_classes="13" total_bugs="0" total_size="26" num_packages="1" java_version="1.8.0_122-ea" vm_version="25.122-b01" cpu_seconds="3.20" clock_seconds="0.71" peak_mbytes="169.78" alloc_mbytes="3641.00" gc_seconds="0.01">
+    <PackageStats package="spec" total_bugs="0" total_types="5" total_size="26">
+      <ClassStats class="spec.Contact" sourceFile="Contact.java" interface="true" size="5" bugs="0"/>
+      <ClassStats class="spec.ContactManager" sourceFile="ContactManager.java" interface="true" size="14" bugs="0"/>
+      <ClassStats class="spec.FutureMeeting" sourceFile="FutureMeeting.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="spec.Meeting" sourceFile="Meeting.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="spec.PastMeeting" sourceFile="PastMeeting.java" interface="true" size="2" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="160" invocations="285" avgMicrosecondsPerInvocation="562" maxMicrosecondsPerInvocation="11820" standardDeviationMircosecondsPerInvocation="1185"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="33" invocations="13" avgMicrosecondsPerInvocation="2564" maxMicrosecondsPerInvocation="12273" standardDeviationMircosecondsPerInvocation="4347"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="32" invocations="253" avgMicrosecondsPerInvocation="128" maxMicrosecondsPerInvocation="1625" standardDeviationMircosecondsPerInvocation="232"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="31" invocations="33" avgMicrosecondsPerInvocation="945" maxMicrosecondsPerInvocation="3827" standardDeviationMircosecondsPerInvocation="904"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="23" invocations="13" avgMicrosecondsPerInvocation="1821" maxMicrosecondsPerInvocation="9959" standardDeviationMircosecondsPerInvocation="2998"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="22" invocations="25" avgMicrosecondsPerInvocation="909" maxMicrosecondsPerInvocation="14082" standardDeviationMircosecondsPerInvocation="2790"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="19" invocations="287" avgMicrosecondsPerInvocation="69" maxMicrosecondsPerInvocation="2003" standardDeviationMircosecondsPerInvocation="144"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="16" invocations="13" avgMicrosecondsPerInvocation="1235" maxMicrosecondsPerInvocation="9917" standardDeviationMircosecondsPerInvocation="2685"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>
