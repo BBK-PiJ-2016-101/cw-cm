@@ -2,11 +2,11 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class ContactTest {
-    Contact testContact;
+    ContactImpl testContact;
 
     @Before
     public void testSetup() {
-	testContact = new Contact(7,"robert paulson","hisname is not");
+	testContact = new ContactImpl(7,"robert paulson","hisname is not");
     }
 
     @Test
