@@ -2,7 +2,6 @@ apply plugin: 'java'
 apply plugin: 'jacoco'  
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
-apply plugin: 'checkstyle' 
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -16,4 +15,5 @@ repositories {
 dependencies {
     compile 'com.google.code.findbugs:annotations:3.0.1'
     testCompile 'junit:junit:4.12'
-}   
+}
+

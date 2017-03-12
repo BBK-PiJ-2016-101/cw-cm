@@ -6,7 +6,7 @@ public class ContactTest {
 
     @Before
     public void testSetup() {
-	testContact = new Contact(7,"hisname is","robert paulson");
+	testContact = new Contact(7,"robert paulson","hisname is not");
     }
 
     @Test
@@ -16,11 +16,11 @@ public class ContactTest {
 
     @Test
     public void testContactName() {
-	assertEquals("hisname is",testContact.getName());
+	assertEquals("robert paulson",testContact.getName());
     }
 
     @Test
     public void testContactNotes() {
-	assertEquals("robert paulson",testContact.getNotes());
+	assertEquals("hisname is not",testContact.getNotes());
     }
 }
