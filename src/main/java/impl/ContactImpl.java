@@ -1,15 +1,15 @@
-public class ContactImpl {
+public class ContactImpl implements spec.Contact {
     int id;
     String name;
     String notes;
 
-    public Contact(int id, String name) {
+    public ContactImpl(int id, String name) {
 	this.id = id;
 	this.name = name;
 	this.notes = "";
     }
     
-    public Contact(int id, String name, String notes) {
+    public ContactImpl(int id, String name, String notes) {
 	this.id = id;
 	this.name = name;
 	this.notes = notes;

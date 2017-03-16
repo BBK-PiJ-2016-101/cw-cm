@@ -10,21 +10,17 @@ import spec.Meeting;
 public class MeetingTest {
     Calendar testDate = new GregorianCalendar();
     Set<spec.Contact> testContacts = new HashSet<spec.Contact>();
-    /*
     ContactImpl firstContact = new ContactImpl(1,"John Doe", "Unidentified male");
     ContactImpl secondContact = new ContactImpl(2,"Jane Doe", "Unidentified female");
-    */
     MeetingMock MeetingMockTest = new MeetingMock(1,testDate,testContacts);
 
-    /*
     @Before
     private void testSetup() {
     testDate.set(2017,03,19,23,59);
     testContacts.add(firstContact);
     testContacts.add(secondContact);
-
+    MeetingMock MeetingMockTest = new MeetingMock(1,testDate,testContacts);
     }
-    */
 
     @Test
     public void testMeetingId() {
