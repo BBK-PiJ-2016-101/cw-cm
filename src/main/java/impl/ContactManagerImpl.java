@@ -1,4 +1,7 @@
+import spec.*;
+
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
@@ -8,9 +11,10 @@ import java.util.ArrayList;
 /**
  * My implementation of a class to manage your contacts and meetings.
  */
-public class ContactManagerImpl implements spec.ContactManager {
-    List<FutureMeeting> futureMeetings = new ArrayList<FutureMeeting>();
-    List<PastMeeting> pastMeetings = new ArrayList<FutureMeeting>();
+public class ContactManagerImpl implements ContactManager {
+    List<FutureMeeting> futureMeetingsList = new ArrayList<FutureMeeting>();
+    List<PastMeeting> pastMeetingsList = new ArrayList<PastMeeting>();
+    List<Contact> contactsList = new ArrayList<Contact>();
     
   /**
    * Adds a new meeting to be held in the future.
@@ -26,9 +30,19 @@ public class ContactManagerImpl implements spec.ContactManager {
    * @throws NullPointerException   if the meeting or the date are null
    */
     public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
-	futureMeetings.add(new FutureMeetingImpl(futureMeetings.size(),date,contact));
+	if (contacts == null || date == null) {
+	    throw new NullPointerException();
+	}
+	if (date.compareTo(new GregorianCalendar()) < 0) {
+	    throw new IllegalStateException();
+	}
+	int futureMeetingId = futureMeetingsList.size();
+	futureMeetingsList.add(new FutureMeetingImpl(futureMeetingId,date,contacts));
+	return futureMeetingId;
     }
 
+    /**
+    
   /**
    * Returns the PAST meeting with the requested ID, or null if it there is none.
    *
@@ -40,15 +54,18 @@ public class ContactManagerImpl implements spec.ContactManager {
    *                 in the future
    */
     public PastMeeting getPastMeeting(int id) {
-	if (pastMeeetings.get(id) != null) {
-	    return pastMeetings.get(id);
+	try {
+	    return pastMeetingsList.get(id);
+	} catch(IndexOutOfBoundsException noPastMeetings) {
+	    try {
+		if (futureMeetingsList.get(id) != null) {
+		    throw new IllegalStateException();
+		}
+	    } catch(IndexOutOfBoundsException noFutureMeetings) {
+		return null;
+	    }
 	}
-	else if (futureMeetings.get(id) != null) {
-	    throw IllegalStateException;
-	}
-	else {
-	    return null;
-	}
+	return null;
     }
 
   /**
@@ -60,16 +77,20 @@ public class ContactManagerImpl implements spec.ContactManager {
    *                 in the past
    */
     public FutureMeeting getFutureMeeting(int id) {
-	if (futureMeeetings.get(id) != null) {
-	    return futureMeetings.get(id);
+	try {
+	    return futureMeetingsList.get(id);
+	} catch(IndexOutOfBoundsException noFutureMeetings) {
+	    try {
+		if (pastMeetingsList.get(id) != null) {
+		    throw new IllegalStateException();
+		}
+	    } catch(IndexOutOfBoundsException noPastMeetings) {
+		return null;
+	    }
 	}
-	else if (pastMeetings.get(id) != null) {
-	    throw IllegalStateException;
-	}
-	else {
-	    return null;
-	}
+	return null;
     }
+
 
   /**
    * Returns the meeting with the requested ID, or null if it there is none.
@@ -77,17 +98,24 @@ public class ContactManagerImpl implements spec.ContactManager {
    * @param id the ID for the meeting
    * @return the meeting with the requested ID, or null if it there is none.
    */
-    Meeting getMeeting(int id) {
-	if (futureMeeetings.get(id) != null) {
-	    return futureMeetings.get(id);
+    public Meeting getMeeting(int id) {
+	try { 
+	    if (futureMeetingsList.get(id) != null) {
+		return futureMeetingsList.get(id);
+	    }
+	} catch(IndexOutOfBoundsException noFutureMeetings) {
+	    try {
+		if (pastMeetingsList.get(id) != null) {
+		    return pastMeetingsList.get(id);
+		}
+	    } catch (IndexOutOfBoundsException noPastMeetings) {
+		return null;
+	    }
 	}
-	else if (pastMeetings.get(id) != null) {
-	    return futureMeetings.get(id);
-	}
-	else {
-	    return null;
-	}
+	return null;
     }
+
+
 
   /**
    * Returns the list of future meetings scheduled with this contact.
@@ -103,16 +131,25 @@ public class ContactManagerImpl implements spec.ContactManager {
    */
 
   /**
-   * Iterate futureMeetings and build a list of items where the meeting's contacts contains this contact
+   * Iterate futureMeetingsList and build a list of items where the meeting's contacts contains this contact
    */
+
     public List<Meeting> getFutureMeetingList(Contact contact) {
 	List list = new ArrayList<FutureMeeting>();
-	for (FutureMeeting futureMeeting : futureMeetings) {
+	if (!contactsList.contains(contact)) {
+	    throw new IllegalArgumentException();
+	}
+	if (contact == null) {
+	    throw new NullPointerException();
+	}
+		for (FutureMeeting futureMeeting : futureMeetingsList) {
 	    if (futureMeeting.getContacts().contains(contact)) {
-		return list.add(futureMeeting);
+		list.add(futureMeeting);
 	    }
 	}
+	return list;
     }
+
 
   /**
    * Returns the list of meetings that are scheduled for, or that took
@@ -128,18 +165,22 @@ public class ContactManagerImpl implements spec.ContactManager {
    */
 
   /**
-   * Iterate futureMeetings then pastMeetings and build a list of items where the meeting's date is equal to date
+   * Iterate futureMeetingsList then pastMeetingsList and build a list of items where the meeting's date is equal to date
    */
+    
     public List<Meeting> getMeetingListOn(Calendar date) {
+	if (date == null) {
+	    throw new NullPointerException();
+	}
 	List list = new ArrayList<Meeting>();
-	for (FutureMeeting futureMeeting : futureMeetings) {
+	for (FutureMeeting futureMeeting : futureMeetingsList) {
 	    if (futureMeeting.getDate().compareTo(date) == 0) {
 		list.add(futureMeeting);
 	    }
 	}
-	for (PastMeeting pastMeeting : pastMeetings) {
-	    if (pastMeeting.getDate().compareTo(date) == 0) {
-		list.add(pastMeeting);
+	for (PastMeeting thisPastMeeting : pastMeetingsList) {
+	    if (thisPastMeeting.getDate().compareTo(date) == 0) {
+		list.add(thisPastMeeting);
 	    }
 	}
 	return list;
@@ -160,16 +201,25 @@ public class ContactManagerImpl implements spec.ContactManager {
    */
 
   /**
-   * Iterate futureMeetings and build a list of items where the meeting's contacts contains this contact
-   */    
-    List<PastMeeting> getPastMeetingListFor(Contact contact) {
+   * Iterate futureMeetingsList and build a list of items where the meeting's contacts contains this contact
+   */
+    
+    public List<PastMeeting> getPastMeetingListFor(Contact contact) {
 	List list = new ArrayList<PastMeeting>();
-	for (PastMeeting pastMeeting : pastMeetings) {
+	if (!contactsList.contains(contact)) {
+	    throw new IllegalArgumentException();
+	}
+	if (contact == null) {
+	    throw new NullPointerException();
+	}
+		for (PastMeeting pastMeeting : pastMeetingsList) {
 	    if (pastMeeting.getContacts().contains(contact)) {
-		return list.add(pastMeeting);
+		list.add(pastMeeting);
 	    }
 	}
+	return list;
     }
+
 
   /**
    * Create a new record for a meeting that took place in the past.
@@ -183,8 +233,14 @@ public class ContactManagerImpl implements spec.ContactManager {
    *                  the date provided is in the future
    * @throws NullPointerException   if any of the arguments is null
    */
+
+    /**
+     * Check what the next index wil be with size(), use the ArrayList index as the id and return tat id to the user
+     */
     public int addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
-	pastMeetings.add(new PastMeetingImpl(pastMeetings.size(),date,contact));
+	int pastMeetingsListId = pastMeetingsList.size();
+	pastMeetingsList.add(new PastMeetingImpl(pastMeetingsList.size(),date,contacts,text));
+	return pastMeetingsListId;
     }
 
   /**
@@ -202,9 +258,26 @@ public class ContactManagerImpl implements spec.ContactManager {
    * @throws NullPointerException   if the notes are null
    */
     public PastMeeting addMeetingNotes(int id, String text) {
-	
-	PastMeeting pastMeeting = new PastMeeting(pastMeetings.size(),
-	futureMeetings.remove(id)
+	Calendar todaysDate = new GregorianCalendar();
+	FutureMeeting thisMeeting;
+	int pastMeetingId;
+	try {
+	    if (futureMeetingsList.get(id) != null) {
+		thisMeeting = futureMeetingsList.get(id);
+	    }
+	} catch {
+	    throw new IllegalArgumentException()
+	}
+	if (thisMeeting.compareTo(todaysDay) > 0) {
+	    throw new IllegalStateException();
+	}
+	if (text != null) {
+	    pastMeetingId = addNewPastMeeting(thisMeeting.getDate(),thisMeeting.getContacts(),text);
+	    futureMeetingsList.remove(id);
+	} else {
+	    throw NullPointerException;
+	}
+	return getPastMeeting(pastMeetingId);
     }
 
   /**
@@ -216,7 +289,10 @@ public class ContactManagerImpl implements spec.ContactManager {
    * @throws IllegalArgumentException if the name or the notes are empty strings
    * @throws NullPointerException   if the name or the notes are null
    */
-  int addNewContact(String name, String notes);
+    public int addNewContact(String name, String notes) {
+	return 1; 
+    }
+    
 
   /**
    * Returns a set with the contacts whose name contains that string.
@@ -228,7 +304,10 @@ public class ContactManagerImpl implements spec.ContactManager {
    * @return a set with the contacts whose name contains that string.
    * @throws NullPointerException if the parameter is null
    */
-  Set<Contact> getContacts(String name);
+    public Set<Contact> getContacts(String name) {
+	 Set<Contact> returnGetContacts = new HashSet<Contact>();
+	 return returnGetContacts;
+    }
 
   /**
    * Returns a set containing the contacts that correspond to the IDs.
@@ -239,7 +318,10 @@ public class ContactManagerImpl implements spec.ContactManager {
    * @throws IllegalArgumentException if no IDs are provided or if
    *                  any of the provided IDs does not correspond to a real contact
    */
-  Set<Contact> getContacts(int... ids);
+  public Set<Contact> getContacts(int... ids) {
+      Set<Contact> returnGetContacts = new HashSet<Contact>();
+      return returnGetContacts;
+  };
 
   /**
    * Save all data to disk.
@@ -247,5 +329,6 @@ public class ContactManagerImpl implements spec.ContactManager {
    * <p>This method must be executed when the program is
    * closed and when/if the user requests it.</p>
    */
-  void flush();
+  public void flush() {
+  }
 }
