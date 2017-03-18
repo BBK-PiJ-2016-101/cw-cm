@@ -259,23 +259,24 @@ public class ContactManagerImpl implements ContactManager {
    */
     public PastMeeting addMeetingNotes(int id, String text) {
 	Calendar todaysDate = new GregorianCalendar();
-	FutureMeeting thisMeeting;
+	FutureMeeting thisMeeting = null;
 	int pastMeetingId;
 	try {
 	    if (futureMeetingsList.get(id) != null) {
 		thisMeeting = futureMeetingsList.get(id);
+		if (thisMeeting.getDate().compareTo(todaysDate) > 0) {
+		    throw new IllegalStateException();
+		}
 	    }
-	} catch {
-	    throw new IllegalArgumentException()
-	}
-	if (thisMeeting.compareTo(todaysDay) > 0) {
-	    throw new IllegalStateException();
+
+	} catch (IndexOutOfBoundsException noFutureMeeting) {
+	    throw new IllegalArgumentException();
 	}
 	if (text != null) {
-	    pastMeetingId = addNewPastMeeting(thisMeeting.getDate(),thisMeeting.getContacts(),text);
+	    pastMeetingId = addNewPastMeeting(thisMeeting.getContacts(),thisMeeting.getDate(),text);
 	    futureMeetingsList.remove(id);
 	} else {
-	    throw NullPointerException;
+	    throw new NullPointerException();
 	}
 	return getPastMeeting(pastMeetingId);
     }
