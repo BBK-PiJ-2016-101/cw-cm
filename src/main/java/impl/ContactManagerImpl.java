@@ -291,7 +291,7 @@ public class ContactManagerImpl implements ContactManager {
    * @throws NullPointerException   if the name or the notes are null
    */
     public int addNewContact(String name, String notes) {
-	if (name == "" || notes == "") {
+	if (name.equals("") || notes.equals("")) {
 	    throw new IllegalArgumentException();
 	}
 	if (name == null || notes == null) {
@@ -315,9 +315,12 @@ public class ContactManagerImpl implements ContactManager {
    * @throws NullPointerException if the parameter is null
    */
     public Set<Contact> getContacts(String name) {
+	if (name == null) {
+	    throw new NullPointerException();
+	}
 	 Set<Contact> returnGetContacts = new HashSet<Contact>();
 	 for (Contact contact : contactsList) {
-	     if (contact.getName == name) {
+	     if (contact.getName() == name) {
 		 returnGetContacts.add(contact);
 	     }
 	 }
@@ -334,6 +337,9 @@ public class ContactManagerImpl implements ContactManager {
    *                  any of the provided IDs does not correspond to a real contact
    */
   public Set<Contact> getContacts(int... ids) {
+      if (ids.length == 0) {
+	  throw new IllegalArgumentException();
+      }
       Set<Contact> returnGetContacts = new HashSet<Contact>();
       	 for (Contact contact : contactsList) {
 	     for (int id : ids) {
@@ -341,6 +347,9 @@ public class ContactManagerImpl implements ContactManager {
 		     returnGetContacts.add(contact);
 		 }
 	     }
+	 }
+	 if (returnGetContacts.size() == 0) {
+	     throw new IllegalArgumentException();
 	 }
       return returnGetContacts;
   }

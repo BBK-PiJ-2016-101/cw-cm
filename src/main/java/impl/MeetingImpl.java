@@ -14,7 +14,6 @@ public abstract class MeetingImpl implements spec.Meeting {
 
     public int getId() {
 	return this.id;
-	
     }
 
     public Calendar getDate() {

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<BugCollection version="3.0.1" sequence="0" timestamp="1489702855520" analysisTimestamp="1489702855547" release="">
+<BugCollection version="3.0.1" sequence="0" timestamp="1489952036287" analysisTimestamp="1489952036305" release="">
   <Project projectName="">
+    <Jar>/home/jacobw/ark/github/BBK-PiJ-2016-101/cw-cm/build/classes/main/ContactManagerImpl.class</Jar>
     <Jar>/home/jacobw/ark/github/BBK-PiJ-2016-101/cw-cm/build/classes/main/MeetingImpl.class</Jar>
     <Jar>/home/jacobw/ark/github/BBK-PiJ-2016-101/cw-cm/build/classes/main/FutureMeetingImpl.class</Jar>
     <Jar>/home/jacobw/ark/github/BBK-PiJ-2016-101/cw-cm/build/classes/main/ContactImpl.class</Jar>
@@ -16,6 +17,7 @@
     <AuxClasspathEntry>/home/jacobw/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.1/f7be08ec23c21485b9b5a1cf1654c2ec8c58168d/jsr305-3.0.1.jar</AuxClasspathEntry>
     <SrcDir>/home/jacobw/ark/github/BBK-PiJ-2016-101/cw-cm/src/main/java/impl/MeetingImpl.java</SrcDir>
     <SrcDir>/home/jacobw/ark/github/BBK-PiJ-2016-101/cw-cm/src/main/java/impl/FutureMeetingImpl.java</SrcDir>
+    <SrcDir>/home/jacobw/ark/github/BBK-PiJ-2016-101/cw-cm/src/main/java/impl/ContactManagerImpl.java</SrcDir>
     <SrcDir>/home/jacobw/ark/github/BBK-PiJ-2016-101/cw-cm/src/main/java/impl/PastMeetingImpl.java</SrcDir>
     <SrcDir>/home/jacobw/ark/github/BBK-PiJ-2016-101/cw-cm/src/main/java/impl/ContactImpl.java</SrcDir>
     <SrcDir>/home/jacobw/ark/github/BBK-PiJ-2016-101/cw-cm/src/main/java/spec/Contact.java</SrcDir>
@@ -24,10 +26,50 @@
     <SrcDir>/home/jacobw/ark/github/BBK-PiJ-2016-101/cw-cm/src/main/java/spec/PastMeeting.java</SrcDir>
     <SrcDir>/home/jacobw/ark/github/BBK-PiJ-2016-101/cw-cm/src/main/java/spec/ContactManager.java</SrcDir>
   </Project>
+  <BugInstance type="ES_COMPARING_PARAMETER_STRING_WITH_EQ" priority="1" rank="14" abbrev="ES" category="BAD_PRACTICE">
+    <Class classname="ContactManagerImpl">
+      <SourceLine classname="ContactManagerImpl" start="14" end="365" sourcefile="ContactManagerImpl.java" sourcepath="ContactManagerImpl.java"/>
+    </Class>
+    <Method classname="ContactManagerImpl" name="getContacts" signature="(Ljava/lang/String;)Ljava/util/Set;" isStatic="false">
+      <SourceLine classname="ContactManagerImpl" start="318" end="327" startBytecode="0" endBytecode="31" sourcefile="ContactManagerImpl.java" sourcepath="ContactManagerImpl.java"/>
+    </Method>
+    <Type descriptor="Ljava/lang/String;" role="TYPE_FOUND">
+      <SourceLine classname="java.lang.String" start="111" end="3141" sourcefile="String.java" sourcepath="java/lang/String.java"/>
+    </Type>
+    <LocalVariable name="name" register="1" pc="57" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <Method classname="spec.Contact" name="getName" signature="()Ljava/lang/String;" isStatic="false" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="spec.Contact" sourcefile="Contact.java" sourcepath="spec/Contact.java"/>
+    </Method>
+    <SourceLine classname="ContactManagerImpl" start="323" end="323" startBytecode="58" endBytecode="58" sourcefile="ContactManagerImpl.java" sourcepath="ContactManagerImpl.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.RefComparisonWarningProperty.STATIC_AND_PARAMETER_IN_PUBLIC_METHOD" value="true"/>
+  </BugInstance>
+  <BugInstance type="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" priority="2" rank="11" abbrev="RCN" category="CORRECTNESS">
+    <Class classname="ContactManagerImpl">
+      <SourceLine classname="ContactManagerImpl" start="14" end="365" sourcefile="ContactManagerImpl.java" sourcepath="ContactManagerImpl.java"/>
+    </Class>
+    <Method classname="ContactManagerImpl" name="addNewContact" signature="(Ljava/lang/String;Ljava/lang/String;)I" isStatic="false">
+      <SourceLine classname="ContactManagerImpl" start="294" end="303" startBytecode="0" endBytecode="199" sourcefile="ContactManagerImpl.java" sourcepath="ContactManagerImpl.java"/>
+    </Method>
+    <LocalVariable name="name" register="1" pc="26" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <SourceLine classname="ContactManagerImpl" start="294" end="294" startBytecode="3" endBytecode="3" sourcefile="ContactManagerImpl.java" sourcepath="ContactManagerImpl.java"/>
+    <SourceLine classname="ContactManagerImpl" start="297" end="297" startBytecode="27" endBytecode="27" sourcefile="ContactManagerImpl.java" sourcepath="ContactManagerImpl.java" role="SOURCE_REDUNDANT_NULL_CHECK"/>
+  </BugInstance>
+  <BugInstance type="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" priority="2" rank="11" abbrev="RCN" category="CORRECTNESS">
+    <Class classname="ContactManagerImpl">
+      <SourceLine classname="ContactManagerImpl" start="14" end="365" sourcefile="ContactManagerImpl.java" sourcepath="ContactManagerImpl.java"/>
+    </Class>
+    <Method classname="ContactManagerImpl" name="addNewContact" signature="(Ljava/lang/String;Ljava/lang/String;)I" isStatic="false">
+      <SourceLine classname="ContactManagerImpl" start="294" end="303" startBytecode="0" endBytecode="199" sourcefile="ContactManagerImpl.java" sourcepath="ContactManagerImpl.java"/>
+    </Method>
+    <LocalVariable name="notes" register="2" pc="30" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <SourceLine classname="ContactManagerImpl" start="294" end="294" startBytecode="12" endBytecode="12" sourcefile="ContactManagerImpl.java" sourcepath="ContactManagerImpl.java"/>
+    <SourceLine classname="ContactManagerImpl" start="297" end="297" startBytecode="31" endBytecode="31" sourcefile="ContactManagerImpl.java" sourcepath="ContactManagerImpl.java" role="SOURCE_REDUNDANT_NULL_CHECK"/>
+  </BugInstance>
   <Errors errors="0" missingClasses="0"></Errors>
-  <FindBugsSummary timestamp="Thu, 16 Mar 2017 22:20:55 +0000" total_classes="9" referenced_classes="20" total_bugs="0" total_size="79" num_packages="2" java_version="1.8.0_121" vm_version="25.121-b14" cpu_seconds="5.34" clock_seconds="1.57" peak_mbytes="110.43" alloc_mbytes="1748.00" gc_seconds="0.04">
-    <PackageStats package="" total_bugs="0" total_types="4" total_size="53">
+  <FindBugsSummary timestamp="Sun, 19 Mar 2017 12:33:56 -0700" total_classes="10" referenced_classes="29" total_bugs="3" total_size="211" num_packages="2" java_version="1.8.0_121" vm_version="25.121-b14" cpu_seconds="7.22" clock_seconds="2.06" peak_mbytes="147.28" alloc_mbytes="1748.00" gc_seconds="0.23" priority_2="2" priority_1="1">
+    <PackageStats package="" total_bugs="3" total_types="5" total_size="185" priority_2="2" priority_1="1">
       <ClassStats class="ContactImpl" sourceFile="ContactImpl.java" interface="false" size="25" bugs="0"/>
+      <ClassStats class="ContactManagerImpl" sourceFile="ContactManagerImpl.java" interface="false" size="132" bugs="3" priority_2="2" priority_1="1"/>
       <ClassStats class="FutureMeetingImpl" sourceFile="FutureMeetingImpl.java" interface="false" size="4" bugs="0"/>
       <ClassStats class="MeetingImpl" sourceFile="MeetingImpl.java" interface="false" size="16" bugs="0"/>
       <ClassStats class="PastMeetingImpl" sourceFile="PastMeetingImpl.java" interface="false" size="8" bugs="0"/>
@@ -40,19 +82,25 @@
       <ClassStats class="spec.PastMeeting" sourceFile="PastMeeting.java" interface="true" size="2" bugs="0"/>
     </PackageStats>
     <FindBugsProfile>
-      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="343" invocations="339" avgMicrosecondsPerInvocation="1012" maxMicrosecondsPerInvocation="32359" standardDeviationMircosecondsPerInvocation="2653"/>
-      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="85" invocations="20" avgMicrosecondsPerInvocation="4272" maxMicrosecondsPerInvocation="23560" standardDeviationMircosecondsPerInvocation="7159"/>
-      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="64" invocations="82" avgMicrosecondsPerInvocation="791" maxMicrosecondsPerInvocation="6607" standardDeviationMircosecondsPerInvocation="1058"/>
-      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="55" invocations="306" avgMicrosecondsPerInvocation="180" maxMicrosecondsPerInvocation="2475" standardDeviationMircosecondsPerInvocation="312"/>
-      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="53" invocations="20" avgMicrosecondsPerInvocation="2692" maxMicrosecondsPerInvocation="17515" standardDeviationMircosecondsPerInvocation="4800"/>
-      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="53" invocations="39" avgMicrosecondsPerInvocation="1378" maxMicrosecondsPerInvocation="34319" standardDeviationMircosecondsPerInvocation="5453"/>
-      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="32" invocations="34" avgMicrosecondsPerInvocation="958" maxMicrosecondsPerInvocation="30875" standardDeviationMircosecondsPerInvocation="5208"/>
-      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="32" invocations="20" avgMicrosecondsPerInvocation="1618" maxMicrosecondsPerInvocation="12013" standardDeviationMircosecondsPerInvocation="2899"/>
-      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="30" invocations="20" avgMicrosecondsPerInvocation="1546" maxMicrosecondsPerInvocation="17118" standardDeviationMircosecondsPerInvocation="3783"/>
-      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="28" invocations="20" avgMicrosecondsPerInvocation="1428" maxMicrosecondsPerInvocation="9408" standardDeviationMircosecondsPerInvocation="2565"/>
-      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="23" invocations="20" avgMicrosecondsPerInvocation="1155" maxMicrosecondsPerInvocation="6960" standardDeviationMircosecondsPerInvocation="1820"/>
-      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="20" invocations="342" avgMicrosecondsPerInvocation="58" maxMicrosecondsPerInvocation="536" standardDeviationMircosecondsPerInvocation="42"/>
-      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildStringPassthruGraph" totalMilliseconds="19" invocations="20" avgMicrosecondsPerInvocation="975" maxMicrosecondsPerInvocation="9144" standardDeviationMircosecondsPerInvocation="2070"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="323" invocations="376" avgMicrosecondsPerInvocation="860" maxMicrosecondsPerInvocation="30456" standardDeviationMircosecondsPerInvocation="2579"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="91" invocations="29" avgMicrosecondsPerInvocation="3142" maxMicrosecondsPerInvocation="26727" standardDeviationMircosecondsPerInvocation="6495"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="81" invocations="120" avgMicrosecondsPerInvocation="681" maxMicrosecondsPerInvocation="10349" standardDeviationMircosecondsPerInvocation="1549"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="65" invocations="29" avgMicrosecondsPerInvocation="2245" maxMicrosecondsPerInvocation="27187" standardDeviationMircosecondsPerInvocation="5302"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="57" invocations="48" avgMicrosecondsPerInvocation="1206" maxMicrosecondsPerInvocation="50783" standardDeviationMircosecondsPerInvocation="7234"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="55" invocations="31" avgMicrosecondsPerInvocation="1793" maxMicrosecondsPerInvocation="14844" standardDeviationMircosecondsPerInvocation="2651"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="52" invocations="343" avgMicrosecondsPerInvocation="153" maxMicrosecondsPerInvocation="1909" standardDeviationMircosecondsPerInvocation="253"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="48" invocations="47" avgMicrosecondsPerInvocation="1022" maxMicrosecondsPerInvocation="23536" standardDeviationMircosecondsPerInvocation="3525"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="45" invocations="31" avgMicrosecondsPerInvocation="1474" maxMicrosecondsPerInvocation="13579" standardDeviationMircosecondsPerInvocation="2471"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="45" invocations="27" avgMicrosecondsPerInvocation="1684" maxMicrosecondsPerInvocation="8449" standardDeviationMircosecondsPerInvocation="2038"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="37" invocations="27" avgMicrosecondsPerInvocation="1399" maxMicrosecondsPerInvocation="14137" standardDeviationMircosecondsPerInvocation="2573"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="34" invocations="27" avgMicrosecondsPerInvocation="1261" maxMicrosecondsPerInvocation="15288" standardDeviationMircosecondsPerInvocation="2795"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="34" invocations="29" avgMicrosecondsPerInvocation="1173" maxMicrosecondsPerInvocation="11506" standardDeviationMircosecondsPerInvocation="2433"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="33" invocations="27" avgMicrosecondsPerInvocation="1243" maxMicrosecondsPerInvocation="5439" standardDeviationMircosecondsPerInvocation="1580"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="32" invocations="29" avgMicrosecondsPerInvocation="1131" maxMicrosecondsPerInvocation="18989" standardDeviationMircosecondsPerInvocation="3471"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="24" invocations="29" avgMicrosecondsPerInvocation="843" maxMicrosecondsPerInvocation="6595" standardDeviationMircosecondsPerInvocation="1705"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="18" invocations="29" avgMicrosecondsPerInvocation="652" maxMicrosecondsPerInvocation="5233" standardDeviationMircosecondsPerInvocation="1156"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="17" invocations="29" avgMicrosecondsPerInvocation="597" maxMicrosecondsPerInvocation="3918" standardDeviationMircosecondsPerInvocation="1100"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="17" invocations="379" avgMicrosecondsPerInvocation="45" maxMicrosecondsPerInvocation="347" standardDeviationMircosecondsPerInvocation="27"/>
     </FindBugsProfile>
   </FindBugsSummary>
   <ClassFeatures></ClassFeatures>

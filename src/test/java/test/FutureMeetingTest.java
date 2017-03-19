@@ -5,36 +5,38 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import spec.Meeting;
+import spec.*;
 
 public class FutureMeetingTest {
     Calendar testDate = new GregorianCalendar();
-    Set<spec.Contact> testContacts = new HashSet<spec.Contact>();
-    ContactImpl firstContact = new ContactImpl(1,"John Doe", "Unidentified male");
-    ContactImpl secondContact = new ContactImpl(2,"Jane Doe", "Unidentified female");
+    Set<Contact> testContacts = new HashSet<Contact>();
+    Contact firstContact = new ContactImpl(1,"John Doe", "Unidentified male");
+    Contact secondContact = new ContactImpl(2,"Jane Doe", "Unidentified female");
+    FutureMeeting futureMeetingMock;
 
     @Before
-    private void testSetup() {
+    public void testSetup() {
     testDate.set(2017,03,19,23,59);
     testContacts.add(firstContact);
     testContacts.add(secondContact);
-    FutureMeetingImpl FutureMeetingTest = new FutureMeetingImpl(1,testDate,testContacts);
+    this.futureMeetingMock = new FutureMeetingImpl(1,testDate,testContacts);
     }
 
-        @Test
+    @Test
     public void testMeetingId() {
-	assertEquals(1,FutureMeetingTest.getId());
+	assertEquals(1,futureMeetingMock.getId());
     }
 
     @Test
     public void testMeetingDate() {
 	Calendar compareDate = new GregorianCalendar();
 	compareDate.set(2017,03,19,23,59);
-	assertEquals(compareDate,FutureMeetingTest.getDate());
+	assertEquals(compareDate,futureMeetingMock.getDate());
     }
 
     @Test
     public void testMeetingContacts() {
-	assertEquals(2,FutureMeetingTest.getContacts().size());
+	assertEquals(2,futureMeetingMock.getContacts().size());
     }
+
 }

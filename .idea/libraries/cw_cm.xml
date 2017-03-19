@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="cw-cm">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/libs/cw-cm.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
