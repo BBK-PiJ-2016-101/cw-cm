@@ -291,7 +291,16 @@ public class ContactManagerImpl implements ContactManager {
    * @throws NullPointerException   if the name or the notes are null
    */
     public int addNewContact(String name, String notes) {
-	return 1; 
+	if (name == "" || notes == "") {
+	    throw new IllegalArgumentException();
+	}
+	if (name == null || notes == null) {
+	    throw new NullPointerException();
+	}
+	int contactId = contactsList.size();
+	Contact newContact = new ContactImpl(contactId, name, notes);
+	contactsList.add(newContact);
+	return contactId;
     }
     
 
@@ -307,6 +316,11 @@ public class ContactManagerImpl implements ContactManager {
    */
     public Set<Contact> getContacts(String name) {
 	 Set<Contact> returnGetContacts = new HashSet<Contact>();
+	 for (Contact contact : contactsList) {
+	     if (contact.getName == name) {
+		 returnGetContacts.add(contact);
+	     }
+	 }
 	 return returnGetContacts;
     }
 
@@ -321,8 +335,16 @@ public class ContactManagerImpl implements ContactManager {
    */
   public Set<Contact> getContacts(int... ids) {
       Set<Contact> returnGetContacts = new HashSet<Contact>();
+      	 for (Contact contact : contactsList) {
+	     for (int id : ids) {
+		 if (contact.getId() == id) {
+		     returnGetContacts.add(contact);
+		 }
+	     }
+	 }
       return returnGetContacts;
-  };
+  }
+
 
   /**
    * Save all data to disk.
